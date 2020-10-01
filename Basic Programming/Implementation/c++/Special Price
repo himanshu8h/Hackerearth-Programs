@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std ;
+int main ( )
+{
+    int n , i ;
+     long int element ;
+  long   int hash [ 100001 ]  = { 0 };
+    int q , p1 , p2 ;
+    cin>>n;
+    for(i=0;i<n;i++)
+    {
+    cin >> element ;
+    if ( element < 100001)
+    hash[ element ]=hash[element]+element;
+    }
+    for(i=1;i<100001;i++)
+    {
+        hash[i]=hash[i]+hash[i-1];
+    }
+    
+    cin >> q ;
+    while( q )
+    {
+        cin>>p1>>p2;
+        if(p1==0)
+        cout<<hash[p2]<<endl;
+        else if(p2==0)
+        cout<<hash[p2]<<endl;
+        else if(p1<=p2)
+        cout<<hash[p2]-hash[p1-1]<<endl;
+        else if(p1>p2)
+        {
+            int temp;
+            temp=p2;
+            p2=p1;
+            p1=temp;
+            cout<<hash[p2]-hash[p1-1]<<endl;
+        }
+        q--;
+    }
+}
+ 
